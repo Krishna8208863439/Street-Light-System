@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Pure professional neutral slate color system */
+    --neutral-950: #0b0f17; /* Slate-950 base */
+    --neutral-900: #0f172a; /* Slate-900 */
+    --neutral-850: #151d30; /* Custom deep slate */
+    --neutral-800: #1e293b; /* Slate-800 */
+    --neutral-700: #334155; /* Slate-700 */
+    --neutral-600: #475569; /* Slate-600 */
+    --neutral-500: #64748b; /* Slate-500 */
+    --neutral-400: #94a3b8; /* Slate-400 */
+    --neutral-300: #cbd5e1; /* Slate-300 */
+    --neutral-200: #e2e8f0; /* Slate-200 */
+    --neutral-100: #f1f5f9; /* Slate-100 */
+    --neutral-50:  #f8fafc; /* Slate-50 */
+    
+    --card-border: rgba(226, 232, 240, 0.08);
+    --glow-neutral: 0 0 20px rgba(148, 163, 184, 0.05);
+    --glow-amber: 0 0 35px rgba(217, 119, 6, 0.25);
+    --glow-standby: 0 0 15px rgba(226, 232, 240, 0.08);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--neutral-950);
+  }
+
+  body {
+    background-color: var(--neutral-950);
+    color: var(--neutral-200);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Grid pattern overlay to make simulation feel like an engineering telemetry interface */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--neutral-950);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--neutral-800);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--neutral-700);
+  }
+}
+
+@layer components {
+  /* Government top banner */
+  .gov-banner {
+    background-color: #070a10;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.05);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--neutral-400);
+  }
+
+  /* Professional data-dense card styling */
+  .glass-card {
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(226, 232, 240, 0.12);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35), var(--glow-neutral);
+  }
+
+  /* Telemetry and tabular values */
+  .metric-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--neutral-400);
+  }
+
+  .gov-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .gov-table th {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--neutral-400);
+    background-color: rgba(30, 41, 59, 0.4);
+    border-bottom: 2px solid var(--neutral-800);
+    padding: 10px 14px;
+  }
+
+  .gov-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.04);
+    color: var(--neutral-200);
+  }
+
+  .gov-table tr:hover {
+    background-color: rgba(226, 232, 240, 0.02);
+  }
+
+  /* Badge styling */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+  }
+
+  .badge-active {
+    background: rgba(217, 119, 6, 0.1);
+    color: #fbbf24;
+    border-color: rgba(217, 119, 6, 0.25);
+  }
+
+  .badge-standby {
+    background: rgba(148, 163, 184, 0.1);
+    color: var(--neutral-300);
+    border-color: rgba(148, 163, 184, 0.25);
+  }
+
+  .badge-day {
+    background: rgba(15, 23, 42, 0.4);
+    color: var(--neutral-500);
+    border-color: rgba(148, 163, 184, 0.1);
+  }
+
+  /* Button styles */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid var(--neutral-800);
+    background: var(--neutral-900);
+    color: var(--neutral-200);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: var(--neutral-800);
+    border-color: var(--neutral-700);
+    color: var(--neutral-50);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* Selected view buttons */
+  .tab-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    color: var(--neutral-400);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tab-btn:hover {
+    color: var(--neutral-100);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .tab-btn.active {
+    color: var(--neutral-950);
+    background-color: var(--neutral-100);
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Controls Overlay for full-screen mode */
+  .floating-panel {
+    background: rgba(11, 15, 23, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.08);
+    border-radius: 6px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 40;
+    transition: all 0.2s ease;
+  }
+}
+
+/* Intelligent streetlight volumetric spotlight beams */
+.light-beam-motion {
+  background: radial-gradient(
+    ellipse at top,
+    rgba(245, 158, 11, 0.18) 0%,
+    rgba(245, 158, 11, 0.06) 40%,
+    transparent 80%
+  );
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+.light-beam-standby {
+  background: radial-gradient(
+    ellipse at top,
+    rgba(226, 232, 240, 0.05) 0%,
+    rgba(226, 232, 240, 0.01) 40%,
+    transparent 80%
+  );
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+/* Light pole glow animations */
+@keyframes motion-pulse {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes standby-breathe {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.35; }
+}
+
+.light-motion { animation: motion-pulse 2s ease-in-out infinite; }
+.light-standby { animation: standby-breathe 4s ease-in-out infinite; }
+
+/* Custom log styling */
+.log-stream {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+.log-item {
+  border-left: 2px solid var(--neutral-700);
+  padding-left: 8px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: var(--neutral-400);
+}
+.log-item.motion {
+  border-left-color: #d97706;
+  color: var(--neutral-200);
+}
+.log-item.standby {
+  border-left-color: var(--neutral-500);
+}
+.log-item.system {
+  border-left-color: #3b82f6;
+}
